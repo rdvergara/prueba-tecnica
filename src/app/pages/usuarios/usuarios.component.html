@@ -1,0 +1,41 @@
+<h2 >Usuarios</h2>
+<hr>
+<div class="row ">
+    <div class="col shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+        <form (ngSubmit)="buscarXNombre()" autocomplete="off">
+            <input type="text"
+                    title="termino"
+                    name="termino"
+                    class="form-control"
+                    [(ngModel)]="termino"
+                    placeholder="Buscar nombre..."
+            />
+        </form>        
+    </div>
+</div>
+<div *ngIf="hayError" 
+    class="alert alert-danger">
+    No se encontro Nombre
+</div>
+<div class="row card shadow p-3 mb-5 bg-body-tertiary rounded" *ngIf="usuarios.length>0">
+    <div class="col">
+        <table class="table table-hover table-bordered border-primary">
+            <thead class="table-dark" >
+                <tr>
+                    <th (click)="OrdenarPor('name',bOrden=!bOrden)" class="raton">Nombre<b class="pi pi-arrows-v"></b></th>
+                    <th (click)="OrdenarPor('email',bOrden=!bOrden)" class="raton">Correo Electronico<b class="pi pi-arrows-v"></b></th>
+                    <th (click)="OrdenarPor('address.city',bOrden=!bOrden)" class="raton">Ciudad<b class="pi pi-arrows-v"></b></th>
+                    <th (click)="OrdenarPor('phone',bOrden=!bOrden)" class="raton">Telefono<b class="pi pi-arrows-v"></b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of usuarios">
+                    <td>{{usuario.name}}</td>
+                    <td>{{usuario.email}}</td>
+                    <td>{{usuario.address.city}}</td>
+                    <td>{{usuario.phone}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
